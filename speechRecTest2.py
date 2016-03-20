@@ -12,16 +12,16 @@ commands = {"turn the lights on": {"data": '{"on":true, "sat":254, "bri":254,"hu
 
 
 r = sr.Recognizer()
-m = sr.Microphone()
+m = sr.Microphone(device_index = 2, chunk_size = 256, sample_rate=44100)
 
 try:
     print("A moment of silence, please...")
     with m as source: r.adjust_for_ambient_noise(source)
     print("Set minimum energy threshold to {}".format(r.energy_threshold))
     while True:
-        #print("Say something!")
+        print("Say something!")
         with m as source: audio = r.listen(source)
-        #print("Got it! Now to recognize it...")
+        print("Got it! Now to recognize it...")
         try:
             # recognize speech using Google Speech Recognition
             #value = r.recognize_google(audio)
